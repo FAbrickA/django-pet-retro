@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load display_messages from main_extras %}
+
+{% block content %}
+	<header id="head" class="secondary"></header>
+
+	<div class="container" style="padding-top: 10px;">
+		{% display_messages %}
+	</div>
+
+	<div class="container" style="padding-bottom:300px;">
+		<h2>Profile</h2>
+		<div>
+			<strong>Username: </strong>
+			<span>{{ user.username }}</span>
+		</div>
+		<div>
+			<strong>E-mail: </strong>
+			<span>{{ user.email }}</span>
+		</div>
+		{% if user.first_name %}
+			<div>
+				<strong>First name: </strong>
+				<span>{{ user.username }}</span>
+			</div>
+		{% endif %}
+		{% if user.last_name %}
+			<div>
+				<strong>Last name: </strong>
+				<span>{{ user.last_name }}</span>
+			</div>
+		{% endif%}
+	</div>
+{% endblock %}

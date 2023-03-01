@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load display_messages from main_extras %}
+
+{% block content %}
+	<header id="head" class="secondary"></header>
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="{% url 'main:home' %}">Home</a></li>
+			<li class="active">Registration</li>
+		</ol>
+
+		<div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-xs-12 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Registration</h1>
+				</header>
+				
+				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<h3 class="thin text-center">Register a new account</h3>
+							<p class="text-center text-muted">
+								Lorem ipsum dolor sit amet, <a href="{% url 'users:login' %}">Login</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. 
+							</p>
+							<hr>
+							<div class="container">
+								{% display_messages %}
+							</div>
+							<form method="POST" action="{% url 'users:registration' %}">
+								{% csrf_token %}
+								<div class="top-margin">
+									<label for="{{ form.username.id_for_label}}">Username <span class="text-danger">*</span></label>
+									{{ form.username }}
+								</div>
+								<div class="top-margin">
+									<label for="{{ form.first_name.id_for_label }}">First Name</label>
+									{{ form.first_name }}
+								</div>
+								<div class="top-margin">
+									<label for="{{ form.last_name.id_for_label }}">Last Name</label>
+									{{ form.last_name }}
+								</div>
+								<div class="top-margin">
+									<label for="{{ form.email.id_for_label }}">Email Address <span class="text-danger">*</span></label>
+									{{ form.email }}
+								</div>
+
+								<div class="row top-margin">
+									<div class="col-sm-6">
+										<label for="{{ form.password.id_for_label }}">Password <span class="text-danger">*</span></label>
+										{{ form.password }}
+									</div>
+									<div class="col-sm-6">
+										<label for="{{ form.confirm_password.id_for_label }}">Confirm Password <span class="text-danger">*</span></label>
+										{{ form.confirm_password }}
+									</div>
+								</div>
+
+								<hr>
+
+								<div class="row">
+									<div class="col-lg-8">
+										<label class="checkbox">
+											<input type="checkbox" required> 
+											I've read the <a href="#!">Terms and Conditions</a>
+										</label>                        
+									</div>
+									<div class="col-lg-4 text-right">
+										<button class="btn btn-action" type="submit">Register</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+				
+			</article>
+			<!-- /Article -->
+
+		</div>
+	</div>	<!-- /container -->
+{% endblock content %}
